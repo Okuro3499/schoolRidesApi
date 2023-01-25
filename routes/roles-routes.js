@@ -8,14 +8,12 @@ const router = express.Router();
 router.post("/api/v1/newRole", async (req, res) => {
     try {
       const new_role = await pool.query(
-        "INSERT INTO roles(role_name, role_description, created_by, created_on, modified_by, modified_on) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+        "INSERT INTO roles(role_name, role_description, created_by, created_on) VALUES ($1, $2, $3, $4) RETURNING *",
         [
             req.body.role_name, 
             req.body.role_description,  
             req.body.created_by, 
             req.body.created_on, 
-            req.body.modified_by, 
-            req.body.modified_on
         ]
       );
       res.json({ new_role: new_role.rows[0] });

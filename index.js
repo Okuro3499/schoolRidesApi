@@ -4,12 +4,14 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-// import carsRouter from "./routes/cars-routes.js";
+import childrenRouter from "./routes/children-routes.js";
 // import clientsRouter from "./routes/clients-routes.js";
 import authRouter from "./routes/auth-routes.js";
 // import partnerRouter from "./routes/partner_routes.js";
 // import staffRouter from "./routes/staff_routes.js";
 import rolesRouter from "./routes/roles-routes.js";
+import vehicleRouter from "./routes/vehicle-routes";
+import ownerRouter from "./routes/vehicle_owner_routes";
 import bodyParser from "body-parser";
 
 dotenv.config();
@@ -24,10 +26,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(carsRouter);
-// app.use(clientsRouter);
+app.use(childrenRouter);
 app.use(authRouter);
-// app.use(partnerRouter);
-// app.use(staffRouter);
+app.use(vehicleRouter);
+app.use(ownerRouter);
 app.use(rolesRouter);
 
 //port
